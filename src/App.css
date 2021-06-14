@@ -1,0 +1,61 @@
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+
+  background-color: ghostwhite;
+  min-height: 100vh;
+  padding: 20px;
+  width: 100vw;
+}
+
+.section-one {
+  display: flex;
+}
+
+.title {
+  font-size: 22px;
+  margin: 50px;
+}
+
+.form {
+  flex-grow: 1;
+  margin: 10px 0;
+  padding: 0 10px;
+}
+
+.input-date {
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 5px 10px;
+  width: 50%;
+}
+
+.input-button {
+  background-color: rgb(0, 55, 0);
+  border-radius: 5px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 5px 10px;
+  margin: 0 5px;
+}
+
+.input-button:hover {
+  background-color: lightgreen;
+  color: rgb(0, 55, 0);
+}
+
+.list {
+  flex-grow: 2;
+  margin: 10px 0;
+}
+
+.list-item {
+  background-color: lightgreen;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  width: 100px;
+}
