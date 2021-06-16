@@ -1,24 +1,36 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import "../App.css";
 
 function Form(props) {
-  const { setList } = props;
-  const [formData, setFormData] = useState();
+  const { setDatesArray } = props;
+  const [inputValue, setInputValue] = useState();
 
-  const handleChange = (e) => {
-    setFormData(e.target.value);
+  useEffect(() => {
+    console.log(inputValue);
+  }, [inputValue]);
+
+  const handleInput = (e) => {
+    setInputValue(e.target.value);
   };
 
   const handleClick = () => {
-    setList((prevList) => [...prevList, formData]);
+    setDatesArray((prevState) => {
+      return [inputValue, ...prevState];
+    });
+  };
+
+  const showElements = () => {
+    return <div>Hi</div>;
   };
 
   return (
-    <div className="form">
-      <input type="date" className="input-date" onInput={handleChange} />
-      <button className="input-button" onClick={handleClick}>
+    <>
+      <input type="date" onInput={handleInput} />
+      <div onClick={handleClick} className="input-button">
         Add
-      </button>
-    </div>
+      </div>
+      {showElements()}
+    </>
   );
 }
 

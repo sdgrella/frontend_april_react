@@ -1,18 +1,17 @@
-import { useState } from "react";
+import "../App.css";
 
 function List(props) {
-  const { list } = props;
-
+  const { datesArray } = props;
   return (
-    <div className="list">
-      {list.map((item, index) => {
-        return (
-          <div key={item + index} className="list-item">
-            {item}
-          </div>
-        );
-      })}
-    </div>
+    <>
+      {props.type === "dates" && (
+        <div>
+          {datesArray.map((date, index) => {
+            return <div key={date + index}>{date}</div>;
+          })}
+        </div>
+      )}
+    </>
   );
 }
 

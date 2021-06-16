@@ -1,34 +1,11 @@
 .page-wrapper {
-  display: flex;
-  flex-direction: column;
-
-  background-color: ghostwhite;
+  background-color: lightgray;
   min-height: 100vh;
-  padding: 20px;
   width: 100vw;
 }
 
-.section-one {
-  display: flex;
-}
-
 .title {
-  font-size: 22px;
-  margin: 50px;
-}
-
-.form {
-  flex-grow: 1;
-  margin: 10px 0;
-  padding: 0 10px;
-}
-
-.input-date {
-  border: none;
-  cursor: pointer;
-  font-size: 18px;
-  padding: 5px 10px;
-  width: 50%;
+  font-size: 20px;
 }
 
 .input-button {
@@ -40,22 +17,4 @@
   font-size: 18px;
   padding: 5px 10px;
   margin: 0 5px;
-}
-
-.input-button:hover {
-  background-color: lightgreen;
-  color: rgb(0, 55, 0);
-}
-
-.list {
-  flex-grow: 2;
-  margin: 10px 0;
-}
-
-.list-item {
-  background-color: lightgreen;
-  border-radius: 10px;
-  margin-bottom: 20px;
-  padding: 10px 20px;
-  width: 100px;
 }
