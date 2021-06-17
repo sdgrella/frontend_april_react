@@ -1,36 +1,87 @@
 import { useEffect, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import "../App.css";
 
 function Form(props) {
   const { setDatesArray } = props;
-  const [inputValue, setInputValue] = useState();
+  const [message, setMessage] = useState("");
+  const [status, setStatus] = useState("");
+  const [date, setDate] = useState("");
+  const [formData, setFormData] = useState({});
+  const [isDisabled, setIsDisabled] = useState(true);
+
+  const handleInputMessage = (e) => {
+    setMessage(e.target.value);
+  };
+
+  const handleInputStatus = (e) => {
+    setStatus(e.target.value);
+  };
+
+  const handleInputDate = (e) => {
+    setDate(e.target.value);
+  };
 
   useEffect(() => {
-    console.log(inputValue);
-  }, [inputValue]);
+    setFormData({
+      message: message,
+      status: status,
+      date: date,
+      id: uuidv4(),
+    });
+  }, [message, status, date]);
 
-  const handleInput = (e) => {
-    setInputValue(e.target.value);
-  };
+  useEffect(() => {
+    console.log(formData);
+    if (formData.message && formData.status && formData.date) {
+      setIsDisabled(false);
+    } else {
+      setIsDisabled(true);
+    }
+  }, [formData]);
+
+  useEffect(() => {
+    console.log(isDisabled);
+  }, [isDisabled]);
 
   const handleClick = () => {
     setDatesArray((prevState) => {
-      return [inputValue, ...prevState];
+      return [formData, ...prevState];
     });
-  };
-
-  const showElements = () => {
-    return <div>Hi</div>;
+    setFormData({});
+    setMessage("");
+    setStatus("");
+    setDate("");
   };
 
   return (
-    <>
-      <input type="date" onInput={handleInput} />
-      <div onClick={handleClick} className="input-button">
+    <div className="form">
+      <input
+        type="text"
+        value={message}
+        className="input-date"
+        onInput={handleInputMessage}
+      />
+      <input
+        type="text"
+        value={status}
+        className="input-date"
+        onInput={handleInputStatus}
+      />
+      <input
+        type="date"
+        value={date}
+        className="input-date"
+        onInput={handleInputDate}
+      />
+      <button
+        disabled={isDisabled}
+        className={`input-button input-button-${isDisabled}`}
+        onClick={handleClick}
+      >
         Add
-      </div>
-      {showElements()}
-    </>
+      </button>
+    </div>
   );
 }
 

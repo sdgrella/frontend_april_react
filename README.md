@@ -1,70 +1,42 @@
-# Getting Started with Create React App
+## JG React Day 2 Live
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+1. Refactor form: from single-input to multi-input form
 
-## Available Scripts
+   In Form.js, add one more input to the JSX in the return statement
+   Connect this input to its own event handler
+   Make a piece of state for this input and for the previously existing input
+   Add a useEffect with these two pieces of state in the dependency array
+   Inside the useEffect, setFormData with the pieces of state as the values for keys
+   Add a useEffect with formData in the dependency array
+   Inside that useEffect, console log formData
 
-In the project directory, you can run:
+2. Refactor list: from listing array of strings to array of objects
 
-### `npm start`
+   Just need to change List code to handle objects, not strings
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+3. Add ability to delete item from list
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+   In Form.js, to each object add an id (no need for an input, just add an id)
+   Can use uuid (https://www.npmjs.com/package/uuid)
+   In List.js, to each item in the list, add a delete button
+   Connect the delete button to a function (all items connect to the same function)
+   For each item in the list, change the key's value to the item's id
+   For the delete button inside each item, set an attribute equal to the id
+   Inside the item's event function, test it by console logging that item's id
+   Inside that same function, replace the console log with code that filters the state array to remote the object that has the id of the clicked element
 
-### `npm test`
+4. Change styles of button based on whether input has value or not
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+   In Form.js, add a useEffect with a dependency array containing formData
+   In that useEffect, write conditional statements that check whether each key in formData has a value or not
+   For now, if all have a value, console log "enable", otherwise console log "disable"
+   Add a piece of state called isDisabled
+   Inside the useEffect with the conditionals, setIsDisabled(false) if form is complete, otherwise setIsEnabled(true)
+   In the styles for the button, add the piece of state to the class name
+   In the App.css file, add styles for disabled and enabled
+   In the html element, add disabled is equal to the piece of state
 
-### `npm run build`
+5. Clear the formData when it's submitted
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+   In Form.js, to the button's event function, setFormData({}) and set each piece of state to empty string
+   To each input, set it's value equal to the corresponding piece of state

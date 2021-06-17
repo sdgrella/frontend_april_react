@@ -8,7 +8,7 @@ import { getDate } from "./lib/functions";
 function App() {
   const [title, setTitle] = useState();
   const [subtitle, setSubtitle] = useState();
-  const [datesArray, setDatesArray] = useState(["Initial Value"]);
+  const [datesArray, setDatesArray] = useState([]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -38,8 +38,14 @@ function App() {
   return (
     <div className="page-wrapper">
       <Title title={title} whateverWeWant={subtitle} />
-      <Form setDatesArray={setDatesArray} />
-      <List type="dates" datesArray={datesArray} />
+      <div className="section-one">
+        <Form setDatesArray={setDatesArray} />
+        <List
+          type="dates"
+          datesArray={datesArray}
+          setDatesArray={setDatesArray}
+        />
+      </div>
     </div>
   );
 }

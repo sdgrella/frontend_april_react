@@ -11,7 +11,7 @@ function Title(props) {
   return (
     <>
       <div className="title">{title}</div>
-      <div>{whateverWeWant}</div>
+      <div className="subtitle">{whateverWeWant}</div>
     </>
   );
 }
