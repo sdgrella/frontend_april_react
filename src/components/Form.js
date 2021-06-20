@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import "../App.css";
+import Loader from "./Loader";
+import { getDog } from "../lib/database";
 
 function Form(props) {
-  const { setDatesArray } = props;
+  const { setDatesArray, setShowAlert } = props;
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState("");
   const [date, setDate] = useState("");
   const [formData, setFormData] = useState({});
   const [isDisabled, setIsDisabled] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleInputMessage = (e) => {
     setMessage(e.target.value);
@@ -23,6 +26,14 @@ function Form(props) {
   };
 
   useEffect(() => {
+    // fetch("https://dog.ceo/api/breeds/image/random")
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     console.log(data);
+    //   });
+  }, []);
+
+  useEffect(() => {
     setFormData({
       message: message,
       status: status,
@@ -32,7 +43,6 @@ function Form(props) {
   }, [message, status, date]);
 
   useEffect(() => {
-    console.log(formData);
     if (formData.message && formData.status && formData.date) {
       setIsDisabled(false);
     } else {
@@ -40,19 +50,45 @@ function Form(props) {
     }
   }, [formData]);
 
-  useEffect(() => {
-    console.log(isDisabled);
-  }, [isDisabled]);
+  // useEffect(() => {
+  //   console.log(isDisabled);
+  // }, [isDisabled]);
 
   const handleClick = () => {
-    setDatesArray((prevState) => {
-      return [formData, ...prevState];
-    });
-    setFormData({});
-    setMessage("");
-    setStatus("");
-    setDate("");
+    setIsLoading(true);
+
+    getDog()
+      .then((response) => response.json())
+      .then((data) => {
+        let newObject = formData;
+        console.log(newObject);
+
+        newObject["image"] = data.message;
+        newObject["image_status"] = data.status;
+
+        setTimeout(() => {
+          setDatesArray((prevState) => {
+            return [newObject, ...prevState];
+          });
+          setFormData({});
+          setMessage("");
+          setStatus("");
+          setDate("");
+          // console.log("done");
+          setIsLoading(false);
+          setShowAlert(true);
+          // This is one way, but see App.js useEffect with showAlert in the
+          // dependency array for another way
+          // setTimeout(() => {
+          //   setShowAlert(false);
+          // }, [2000]);
+        }, [2000]);
+      });
   };
+
+  useEffect(() => {
+    console.log("isLoading", isLoading);
+  }, [isLoading]);
 
   return (
     <div className="form">
@@ -74,13 +110,16 @@ function Form(props) {
         className="input-date"
         onInput={handleInputDate}
       />
-      <button
-        disabled={isDisabled}
-        className={`input-button input-button-${isDisabled}`}
-        onClick={handleClick}
-      >
-        Add
-      </button>
+      {!isLoading && (
+        <button
+          disabled={isDisabled}
+          className={`input-button input-button-${isDisabled}`}
+          onClick={handleClick}
+        >
+          Add
+        </button>
+      )}
+      {isLoading && <Loader />}
     </div>
   );
 }

@@ -3,43 +3,48 @@ import "./App.css";
 import Title from "./components/Title.js";
 import Form from "./components/Form.js";
 import List from "./components/List.js";
-import { getDate } from "./lib/functions";
+import Alert from "./components/Alert.js";
 
 function App() {
   const [title, setTitle] = useState();
   const [subtitle, setSubtitle] = useState();
   const [datesArray, setDatesArray] = useState([]);
+  const [showAlert, setShowAlert] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => {
-      setTitle("this is the title");
-    }, [1000]);
+    setTitle("this is the title");
   }, []);
 
   useEffect(() => {
     if (title) {
-      console.log(title);
-      setTimeout(() => {
-        setSubtitle("I'm the subtitle");
-      }, [1000]);
+      setSubtitle("I'm the subtitle");
     }
   }, [title]);
 
   useEffect(() => {
-    if (subtitle) {
-      console.log("subtitle", subtitle);
-    }
-  }, [subtitle]);
+    console.log("datesArray", datesArray);
+  }, [datesArray]);
 
   useEffect(() => {
-    console.log(datesArray);
-  }, [datesArray]);
+    console.log("showAlert", showAlert);
+
+    setTimeout(() => {
+      setShowAlert(false);
+    }, [2000]);
+
+    if (showAlert) {
+      setTitle("New title");
+    } else if (!showAlert && title !== "") {
+      setTitle("Old title");
+    }
+  }, [showAlert]);
 
   return (
     <div className="page-wrapper">
+      {showAlert && <Alert />}
       <Title title={title} whateverWeWant={subtitle} />
       <div className="section-one">
-        <Form setDatesArray={setDatesArray} />
+        <Form setDatesArray={setDatesArray} setShowAlert={setShowAlert} />
         <List
           type="dates"
           datesArray={datesArray}

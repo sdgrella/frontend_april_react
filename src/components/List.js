@@ -3,7 +3,6 @@ import "../App.css";
 function List(props) {
   const { datesArray, setDatesArray } = props;
   const handleDeleteItem = (e) => {
-    console.log(e.target.id);
     const filteredArray = datesArray.filter((messageItem) => {
       return messageItem.id !== e.target.id;
     });

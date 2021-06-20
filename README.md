@@ -40,3 +40,57 @@
 
    In Form.js, to the button's event function, setFormData({}) and set each piece of state to empty string
    To each input, set it's value equal to the corresponding piece of state
+
+## JG React Day 3 Live
+
+1. Build the setup for your loader
+
+   In Form.js, add a piece of state for isLoading with its initial state set to false
+   In Form.js, in handleClick, set isLoading to true
+   In Form.js, in handleClick, add a setTimeout that wraps everything inside
+   In the setTimeout, set isLoading to false
+   Create a useEffect that console logs isLoading each time it changes
+
+2. Show the button if isLoading is false
+
+   In Form.js, connect the state isLoading to the button
+
+3. Show a loader if isLoading is true
+
+   Create a component for your loader
+   Import the loader into Form.js
+   Connect the state to the loader and show it when isLoading is true
+
+4. Build the setup for the Alert
+
+   In App.js, create a piece of state for showAlert and set it to false
+   Pass the setShowAlert function down as a prop to the form
+   Inside the setTimeout, setShowAlert to true
+
+5. Remove alert
+
+   In Form.js, create a useEffect with showAlert in the dependency array
+   In the useEffect, add a setTimeout that changes showAlert to false
+   Console.log showAlert each time it changes
+
+6. Show the alert
+
+   Add a component for an alert
+   Show it when showAlert is true and hide it when false
+
+7. In App.js, add a useEffect
+
+   Inside the useEffect, write a fetch request that on page load requests data from an API
+   Save the results to a piece of state
+
+8. Add a loader that shows the page is loading until the fetch request comes back with data
+
+9. Add to your form a fetch request
+
+   When the user submits the form, send out a fetch request to an API
+   Add information from the API to your form submimssion
+   Use a loader and an alert as part of the user experience lifecycle
+
+10. If time permits, use local storage to store the form entries
+
+    When the app loads, load from storage the saved entries
