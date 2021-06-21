@@ -94,3 +94,63 @@
 10. If time permits, use local storage to store the form entries
 
     When the app loads, load from storage the saved entries
+
+## JG React Day 4 Live
+
+1. Send a POST request to a server
+
+   In the database.js file, write a function for sending a POST request
+   The function should take in as an argument the form data that you want to submit
+   In the Form.js file, when the user submits the data, wait for a successful response
+   before adding the data to the state
+
+2. Refactor Your App.js file
+
+   Create a new component called Home
+   Move everything from App.js to Home
+   Call the Home component in App to make sure it's working
+
+3. Install react-router-dom
+
+   npm install react-router-dom
+   skim through quickstart: https://reactrouter.com/web/guides/quick-start
+
+4. Implement BrowserRouter and one Route to Home
+
+   Import BrowserRouter and Route
+   Create setup for Browser
+
+   https://reactrouter.com/web/api/BrowserRouter
+
+5. Add one Route for the Home
+
+   Explore more than one way you can write this route
+   Try using the List component as a route component -- does it work?
+
+6. Add a second Route for a Success page
+
+   Connect it a new component
+   Add a Link on the success page that sends you back to Home
+   Talk about the Link component
+
+7. Add a third Route to the router
+
+   Connect it to a new component
+   The component should have in its path a variable
+   Refactor your code so that when you click on a message,
+   it takes you to that page
+   Have the page redirect you to the Home page after 3 seconds
+
+8. In this third component, use useLocation
+
+   Create a useEffect that console logs the path any time the location changes
+   Maybe need to do the following in this third component
+   Create a piece of state that stores an array of object (just hard code them for now)
+   Display the objects on the page
+   When a user clicks the object, use the Link to change the location
+   Console log the location each time the route changes
+
+9. Add a Private Route
+
+   For now, let's just look at the PrivateRoute code
+   After we learn Context, we'll implement the PrivateRoute

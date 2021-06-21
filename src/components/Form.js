@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
+
 import { v4 as uuidv4 } from "uuid";
 import "../App.css";
 import Loader from "./Loader";
-import { getDog } from "../lib/database";
+import { getDog, addMessage } from "../lib/database";
 
 function Form(props) {
   const { setDatesArray, setShowAlert } = props;
@@ -59,30 +60,41 @@ function Form(props) {
 
     getDog()
       .then((response) => response.json())
-      .then((data) => {
+      .then((dogData) => {
+        console.log(dogData);
+
         let newObject = formData;
-        console.log(newObject);
+        // console.log(newObject);
 
-        newObject["image"] = data.message;
-        newObject["image_status"] = data.status;
+        newObject["image"] = dogData.message;
+        newObject["image_status"] = dogData.status;
 
-        setTimeout(() => {
-          setDatesArray((prevState) => {
-            return [newObject, ...prevState];
+        addMessage(newObject)
+          .then((response) => response.json())
+          .then((messageData) => {
+            console.log(messageData);
+            if (messageData === "Success") {
+              setDatesArray((prevState) => {
+                return [newObject, ...prevState];
+              });
+              setFormData({});
+              setMessage("");
+              setStatus("");
+              setDate("");
+              // console.log("done");
+              setIsLoading(false);
+              setShowAlert(true);
+              // This is one way, but see App.js useEffect with showAlert in the
+              // dependency array for another way
+              // setTimeout(() => {
+              //   setShowAlert(false);
+              // }, [2000]);
+            }
           });
-          setFormData({});
-          setMessage("");
-          setStatus("");
-          setDate("");
-          // console.log("done");
-          setIsLoading(false);
-          setShowAlert(true);
-          // This is one way, but see App.js useEffect with showAlert in the
-          // dependency array for another way
-          // setTimeout(() => {
-          //   setShowAlert(false);
-          // }, [2000]);
-        }, [2000]);
+
+        // setTimeout(() => {
+
+        // }, [2000]);
       });
   };
 
