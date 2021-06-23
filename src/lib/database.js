@@ -11,6 +11,6 @@ export function addMessage(data) {
   });
 }
 
-export function getUser(userId) {
-  return fetch(serverURL + "get-user/" + userId);
+export function getUser() {
+  return fetch(serverURL + "get-user/");
 }

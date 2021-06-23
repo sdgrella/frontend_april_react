@@ -1,16 +1,14 @@
+import { useContext } from "react";
 import "../App.css";
+import AppContext from "../context/AppContext";
 
-function Title(props) {
-  const { title, whateverWeWant } = props;
-
-  // useEffect(() => {
-  //   console.log(props);
-  // }, []);
+function Title() {
+  const appContext = useContext(AppContext);
 
   return (
     <>
-      <div className="title">{title}</div>
-      <div className="subtitle">{whateverWeWant}</div>
+      <div className="title">{appContext.title}</div>
+      <div className="subtitle">{appContext.subtitle}</div>
     </>
   );
 }

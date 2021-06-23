@@ -1,12 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import { v4 as uuidv4 } from "uuid";
 import "../App.css";
 import Loader from "./Loader";
 import { getDog, addMessage } from "../lib/database";
+import AppContext from "../context/AppContext";
 
 function Form(props) {
-  const { setDatesArray, setShowAlert } = props;
+  const appContext = useContext(AppContext);
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState("");
   const [date, setDate] = useState("");
@@ -74,7 +75,7 @@ function Form(props) {
           .then((messageData) => {
             console.log(messageData);
             if (messageData === "Success") {
-              setDatesArray((prevState) => {
+              appContext.setDatesArray((prevState) => {
                 return [newObject, ...prevState];
               });
               setFormData({});
@@ -83,7 +84,7 @@ function Form(props) {
               setDate("");
               // console.log("done");
               setIsLoading(false);
-              setShowAlert(true);
+              appContext.setShowAlert(true);
               // This is one way, but see App.js useEffect with showAlert in the
               // dependency array for another way
               // setTimeout(() => {

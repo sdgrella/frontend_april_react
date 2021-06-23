@@ -1,19 +1,24 @@
+import { useContext } from "react";
 import "../App.css";
+import AppContext from "../context/AppContext";
 
 function List(props) {
-  const { datesArray, setDatesArray } = props;
+  const appContext = useContext(AppContext);
+  const { type } = props;
   const handleDeleteItem = (e) => {
-    const filteredArray = datesArray.filter((messageItem) => {
+    const filteredArray = appContext.datesArray.filter((messageItem) => {
       return messageItem.id !== e.target.id;
     });
-    setDatesArray(filteredArray);
+    appContext.setDatesArray(filteredArray);
   };
 
   return (
     <>
-      {props.type === "dates" && (
+      <div>This is the List</div>
+
+      {type === "dates" && (
         <div className="list">
-          {datesArray.map((date, index) => {
+          {appContext.datesArray.map((date, index) => {
             return (
               <div key={date.id} className="list-item">
                 <div>{date.message}</div>

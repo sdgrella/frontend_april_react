@@ -154,3 +154,38 @@
 
    For now, let's just look at the PrivateRoute code
    After we learn Context, we'll implement the PrivateRoute
+
+## JG React Day 5 Live
+
+1. Strategize about how to show the List on the success page
+
+   Refactor the Form and List so that the list is globally available  
+   Add a subfolder in the src folder called context
+   Add to the context folder and file called AppContext
+   Add code to AppContext
+
+2. Use the List component for the success page
+
+   The List component needs to be able to standalone
+   Be able to call it next to the Form within the Home component
+   Be able to call it by itself on its own page
+
+3. Add a button to the List page that takes you to the Home page
+
+4. Add a button to the success page that takes you to the Form page
+
+   The Form page should be able to stand alone
+   Be able to call it next to the List
+   Be able to call it by itself on the form page
+
+5. Add a PrivateRoute
+
+   To the global state, add a piece of state for a user
+   When the app loads, fetch a user from the server
+   Load the user state with the user object from the server
+   Make one of your routes PrivateRoute so that the user can only see if "logged in"
+
+The link below is a good explanation (but note it doesn't use Hooks like we are
+but the concepts are well explained and relatively easy to see in the code)
+
+<!-- https://medium.com/@whwrd/reacts-context-api-in-5-minutes-8188d9b507fe -->
