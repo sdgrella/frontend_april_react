@@ -189,3 +189,21 @@ The link below is a good explanation (but note it doesn't use Hooks like we are
 but the concepts are well explained and relatively easy to see in the code)
 
 <!-- https://medium.com/@whwrd/reacts-context-api-in-5-minutes-8188d9b507fe -->
+
+## JG React Day 6
+
+1. Setup Firebase project in Google console
+
+https://firebase.google.com/docs/web/setup
+
+Create the project
+Declared it as a <> web project
+Choose Authentication tool
+
+2. Firebase credentials
+
+In src/lib folder, put your firebaseConfig file and initialize app
+
+3. NPM install firebase
+
+4. Import firebase credentials into the file you want to use it in (try App.js)
